@@ -1,0 +1,18 @@
+<h2>Player Roster</h2>
+<ul class="players">
+	<li *ngFor="let player of players" 
+	[class.selected]="player === selectedPlayer"
+	(click)="onSelect(player)">
+		<span class="badge">{{player.id}}</span> {{player.name}}
+	</li>
+</ul>
+
+<div *ngIf="selectedPlayer">
+	<h2>{{selectedPlayer.name | uppercase}} STATS</h2>
+	<div><span>id: </span>{{selectedPlayer.id}}</div>
+	<div>
+  	<label>name:
+    	<input [(ngModel)]="selectedPlayer.name" placeholder="name">
+  	</label>
+	</div>
+</div>
