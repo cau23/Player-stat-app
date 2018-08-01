@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Player } from '../player';
-import { PLAYERS } from '../practice-players';
+import { PlayerService } from '../player.service';
 
 // Component is a decorator function that specifies 
 // Angular metadata for the component
@@ -12,17 +12,21 @@ import { PLAYERS } from '../practice-players';
 // Always export the component class so you can inport it elsewhere
 export class PlayersComponent implements OnInit {
 
-		players = PLAYERS;
+		players: Player[];
 		
 		selectedPlayer: Player;
 
-		onSelect(player: Player): void {
-			this.selectedPlayer = player;
-		}
-
-  constructor() { }
+  constructor(private playerService: PlayerService) { }
 
   ngOnInit() {
+  	this.getPlayers();
   }
 
+  onSelect(player: Player): void {
+		this.selectedPlayer = player;
+	}
+
+	getPlayers(): void {
+  	this.playerService.getPlayers() 
+  		.subscribe(players => this.players = players);  }
 }

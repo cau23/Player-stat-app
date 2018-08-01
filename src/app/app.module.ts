@@ -4,16 +4,24 @@ import { FormsModule } from '@angular/forms'; // <-- ngModel lives here
 
 import { AppComponent } from './app.component';
 import { PlayersComponent } from './players/players.component';
+import { PlayerProfileComponent } from './player-profile/player-profile.component';
+import { MessagesComponent } from './messages/messages.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlayersComponent
+    PlayersComponent,
+    PlayerProfileComponent,
+    MessagesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
