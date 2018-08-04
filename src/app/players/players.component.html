@@ -1,10 +1,10 @@
 <h2>Player Roster</h2>
 
 <ul class="players">
-	<li *ngFor="let player of players" 
-	[class.selected]="player === selectedPlayer"
-	(click)="onSelect(player)">
-		<span class="badge">{{player.id}}</span> {{player.name}}
+	<li *ngFor="let player of players">
+		<a routerLink="/profile/{{player.id}}">
+			<span class="badge">{{player.id}}</span> {{player.name}}
+		</a>
 	</li>
 </ul>
 

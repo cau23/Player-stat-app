@@ -20,5 +20,4 @@ export class DashboardComponent implements OnInit {
   	this.playerService.getPlayers()
   		.subscribe(players => this.players = players.slice(1, 5));
   }
-
 }

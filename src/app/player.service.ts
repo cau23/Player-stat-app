@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Player } from './player';
-import { PLAYERS } from './practice-players';
 import { Observable, of } from 'rxjs';
+import { Player } from './player';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from './message.service';
 
 @Injectable({
@@ -9,14 +9,18 @@ import { MessageService } from './message.service';
 })
 export class PlayerService {
 
+	constructor(private messageService: MessageService) { }
+
 	getPlayers(): Observable<Player[]> {
 		// TODO: send the message _after_ fetching the players
 		this.messageService.add('PlayerService: fetched players');
 		return of(PLAYERS);
 	}
 
-  constructor(private messageService: MessageService) { }
-
-
-  
+	// Adding playerService.getPlayer method
+	getPlayer(id: number): Observable<Player> {
+    // TODO: send the message _after_ fetching the player
+    this.messageService.add(`PlayerService: fetched player id=${id}`);
+    return of(PLAYERS.find(player => player.id === id));
+  }
 }

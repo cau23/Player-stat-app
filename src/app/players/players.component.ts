@@ -11,20 +11,13 @@ import { PlayerService } from '../player.service';
 })
 // Always export the component class so you can inport it elsewhere
 export class PlayersComponent implements OnInit {
-
 		players: Player[];
-		
-		selectedPlayer: Player;
 
   constructor(private playerService: PlayerService) { }
 
   ngOnInit() {
   	this.getPlayers();
   }
-
-  onSelect(player: Player): void {
-		this.selectedPlayer = player;
-	}
 
 	getPlayers(): void {
   	this.playerService.getPlayers() 
