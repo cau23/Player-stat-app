@@ -1,5 +1,15 @@
 <h2>Player Roster</h2>
 
+<div>
+  <label>Player name:
+    <input #playerName />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(playerName.value); playerName.value=''">
+    add
+  </button>
+</div>
+
 <ul class="players">
 	<li *ngFor="let player of players">
 		<a routerLink="/profile/{{player.id}}">

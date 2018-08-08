@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Player } from '../player';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
+import { Player } from '../player';
 import { PlayerService } from '../player.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class PlayerProfileComponent implements OnInit {
   	private route: ActivatedRoute,
   	// Gets player data from remote server
   	// Component uses it to get player-to-display
-  	private PlayerService: PlayerService,
+  	private playerService: PlayerService,
   	// angular service for interacting with the browser
   	private location: Location
   ) { }
@@ -31,12 +31,17 @@ export class PlayerProfileComponent implements OnInit {
 
   getPlayer(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-  	this.PlayerService.getPlayer(id)
+  	this.playerService.getPlayer(id)
   	.subscribe(player => this.player = player);
 	}
 
 	goBack(): void {
 		this.location.back();
 	}
+
+  save(): void {
+    this.playerService.updatePlayer(this.player)
+    .subscribe(() => this.goBack());
+  }
 }
 
