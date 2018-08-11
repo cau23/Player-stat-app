@@ -10,6 +10,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { PlayerSearchComponent } from './player-search/player-search.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { InMemoryDataService } from './in-memory-data.service';
     DashboardComponent,
     PlayersComponent,
     PlayerProfileComponent,
-    MessagesComponent
+    MessagesComponent,
+    PlayerSearchComponent
   ],
   bootstrap: [AppComponent]
 })

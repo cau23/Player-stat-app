@@ -33,4 +33,9 @@ export class PlayersComponent implements OnInit {
       });
   }
 
+  delete(player: Player): void {
+  this.players = this.players.filter(h => h !== player);
+  this.playerService.deletePlayer(player).subscribe();
+}
+
 }

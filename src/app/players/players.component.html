@@ -15,6 +15,9 @@
 		<a routerLink="/profile/{{player.id}}">
 			<span class="badge">{{player.id}}</span> {{player.name}}
 		</a>
+		<button class="delete" title="delete player"
+			(click)="delete(player)">x</button>
 	</li>
+
 </ul>
 

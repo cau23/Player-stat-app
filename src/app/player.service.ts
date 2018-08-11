@@ -51,10 +51,33 @@ getPlayer(id: number): Observable<Player> {
   }
 
   /** POST: add a new hero to the server */
-addHero (player: Player): Observable<Player> {
+addPlayer (player: Player): Observable<Player> {
   return this.http.post<Player>(this.playersUrl, player, httpOptions).pipe(
     tap((player: Player) => this.log(`added player w/ id=${player.id}`)),
     catchError(this.handleError<Player>('addPlayer'))
+  );
+}
+
+	/** Delete the player from the server */
+	deletePlayer (player: Player | number): Observable<Player> {
+		const id = typeof player === 'number' ? player : player.id;
+		const url = `${this.playersUrl}/${id}`;
+
+		return this.http.delete<Player>(url, httpOptions).pipe(
+			tap(_ => this.log(`deleted player id=${id}`)),
+			catchError(this.handleError<Player>('deletePlayer'))
+			);
+	}
+
+	/* GET players whose name contains search term */
+searchPlayers(term: string): Observable<Player[]> {
+  if (!term.trim()) {
+    // if not search term, return empty player array.
+    return of([]);
+  }
+  return this.http.get<Player[]>(`${this.playersUrl}/?name=${term}`).pipe(
+    tap(_ => this.log(`found players matching "${term}"`)),
+    catchError(this.handleError<Player[]>('searchPlayers', []))
   );
 }
 
